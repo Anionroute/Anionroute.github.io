@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="cs">
+<head>
+    <link rel="stylesheet" href="styl.css">
+    <title>Matematika</title>
+</head>
+<body>
+    <nav>
+        <button onclick="generujRovnici(1)">Sčítání</button>
+        <button onclick="generujRovnici(2)">Odčítání</button><br>
+    </nav>
+
+    <section id="formular">
+        <form id="test" action="" method="get">
+            <label id="priklad"></label>
+            <input id="zadejVysledek" name="zadejVysledek" value="" type="text" size="1" onfocus="this.value=''"><br>
+            <input id="tlacitkoVypocitej" type="button" value="Vypočítej" onclick="vyhodnot(this.form)">
+        </form>
+    </section>
+    
+    <script>
+        var vysledek;
+        var pocet = 0;
+        var chyba = 0;
+
+        function nahodneCislo(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        function generujRovnici(op) {
+            document.getElementById("formular").style.display = "block";
+            var clen1 = nahodneCislo(1, 20);
+            var zobrazPriklad = document.getElementById('priklad');
+
+            if (op == 1) {
+                var scitanec = nahodneCislo(1, 20 - clen1);
+                vysledek = clen1 + scitanec;
+                var priklad = zobrazPriklad.innerHTML = clen1+" + "+scitanec+" = ";
+            } else {
+                var mensitel = nahodneCislo(1, clen1);
+                vysledek = clen1 - mensitel;
+                var priklad = zobrazPriklad.innerHTML = clen1+" - "+mensitel+" = ";
+            }
+            
+            return priklad;
+        }
+
+        function vyhodnot(form) {
+            var zadano = form.zadejVysledek.value;
+            if (zadano == vysledek) {
+                alert("Správně!");
+                pocet++;
+                generujRovnici(1);
+            } else {
+                alert("Chyba. Správný výsledek je " + vysledek);
+                chyba++;
+                pocet++;
+                generujRovnici(1);
+            }
+
+            if (pocet == 10) {
+                hodnoceni = 100 - (100 * chyba) / 3;
+                alert("Hotovo! Hodnocení: " + Math.floor(hodnoceni) + " %");
+                document.getElementById("formular").style.display = "none";
+                pocet = 1;
+            }
+        }
+    </script>
+</body>
+</html>

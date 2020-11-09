@@ -1,0 +1,25 @@
+#zadejVysledek, #tlacitkoVypocitej {
+    width: 1em;
+    font-size: 200px;
+}
+
+#zadejVysledek {
+    border: 3px solid red;
+}
+
+#tlacitkoVypocitej {
+    font-size: 100px;
+    width: 5em;
+    margin-top: 50px;
+    margin-left: 180px;
+}
+
+#formular {
+    display: none;
+    margin-left: 370px;
+    margin-top: 200px;
+}
+
+#priklad {
+    font-size: 200px;
+}
